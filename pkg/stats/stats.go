@@ -64,14 +64,12 @@ func PeriodsDynamic(
 	) map[types.Category]types.Money {
 	
 	result := map[types.Category]types.Money{}
+
 	for key, payment := range first {
-		if payment.Amount > 0 {
-			if int(second[key]) > 0 {
-				secondVal := second[key]
-				result[key] = secondVal.Amount - payment.Amount
-			} else {
-				result[key] = 0
-			}
+		if int(second[key]) > 0 {
+			result[key] = second[key] - payment
+		} else {
+			result[key] = 0
 		}
 	}
 	return result
