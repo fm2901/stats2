@@ -52,7 +52,7 @@ func CategoriesAvg(payments []types.Payment) map[types.Category]types.Money {
 	}
 
 	for cat, value := range categories {
-		categories[cat] = int(categories[cat]) / counter[cat]
+		categories[cat] = categories[cat] / types.Money(counter[cat])
 	}
 
 	return categories
