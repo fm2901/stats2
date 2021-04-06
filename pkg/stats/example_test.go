@@ -1,10 +1,8 @@
 package stats
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
-
 	"github.com/fm2901/bank/v2/pkg/types"
 )
 
