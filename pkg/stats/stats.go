@@ -43,7 +43,7 @@ func TotalInCategory(payments []types.Payment, category types.Category) types.Mo
 func CategoriesAvg(payments []types.Payment) map[types.Category]types.Money {
 	categories := map[types.Category]types.Money{}
 	counter := map[types.Category]int{}
-	
+
 	for _, payment := range payments {
 		if payment.Amount > 0 {
 			categories[payment.Category] += payment.Amount
@@ -59,18 +59,16 @@ func CategoriesAvg(payments []types.Payment) map[types.Category]types.Money {
 }
 
 func PeriodsDynamic(
-		first map[types.Category]types.Money, 
-		second map[types.Category]types.Money,
-	) map[types.Category]types.Money {
-	
-	result := map[types.Category]types.Money{}
+	first map[types.Category]types.Money,
+	second map[types.Category]types.Money,
+) map[types.Category]types.Money {
 
-	for key, payment := range first {
-		if int(second[key]) > 0 {
-			result[key] = second[key] - payment
-		} else {
-			result[key] = 0
-		}
+	result := map[types.Category]types.Money{}
+	for key := range second {
+		result[key] += second[key]
+	}
+	for key := range first {
+		result[key] -= first[key]
 	}
 	return result
 }
