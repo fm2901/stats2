@@ -51,7 +51,7 @@ func CategoriesAvg(payments []types.Payment) map[types.Category]types.Money {
 		}
 	}
 
-	for cat, value := range categories {
+	for cat := range categories {
 		categories[cat] = categories[cat] / types.Money(counter[cat])
 	}
 
